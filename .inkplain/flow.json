@@ -1,0 +1,51 @@
+{
+  "practical_case": {
+    "id": "XyG1DtckUo3TxhJNaETO",
+    "slug": "invoice-processing-ai-agent",
+    "name": "Invoice Processing AI Agent"
+  },
+  "current": "inkp",
+  "stages": {
+    "intro": {
+      "status": "done",
+      "summary": "Gate 1 approved and completed. Created Invoice Processing AI Agent 4/6 (case XyG1DtckUo3TxhJNaETO), Starter FDE profile, linked 4 actual skills: Integrating Files / Docs, Implementing Structured Output Parsing, Implementing Input Validation and Integrating PostgreSQL. Saved 7 in-depth Introduction sections and MCP-read verified each. Generated a no-human/no-text photorealistic alpine lake and deer motivational cover, cropped/resized to exactly 400x250 JPEG, uploaded to Inkplain Media Library (Ehuq8NWj03j9RU2UeA2k), bound as case image and read-back verified. Stage 2 not started.",
+      "started_at": "2026-10-09T20:51:25.028Z",
+      "finished_at": "2026-10-09T20:52:40.080Z",
+      "updated_by": "api-key:for-chatgpt-test-2",
+      "outputs": {
+        "case_id": "XyG1DtckUo3TxhJNaETO",
+        "portal_url": "/practical-case/invoice-processing-ai-agent",
+        "level": "starter",
+        "profile": "forward-deployed-engineering",
+        "skills": 4,
+        "intro_sections": 7,
+        "cover_media_id": "Ehuq8NWj03j9RU2UeA2k",
+        "cover_size": "400x250",
+        "cover_uploaded": true,
+        "repository_created": false,
+        "planned_repo_org": "Inkplain-Practical-Cases"
+      }
+    },
+    "repo": {
+      "status": "done",
+      "summary": "Gate 2 repository development verified complete. Six cumulative branches each contain runnable PDF extraction/invoice parsing/Decimal validation/PostgreSQL/duplicate handling/hardening code with STEP-N.crd + STEP-N.md, and main has FINAL.crd (26 components), README and seven-job GitHub Actions matrix. Initial CI failure was Docker Hub unauthenticated pull rate limit, resolved via public ECR PostgreSQL image. Latest workflow run #2 37991328466 concluded success: all seven branch/main pytest jobs completed success, zero failed steps. Stage 3 was not started.",
+      "started_at": "2026-10-09T20:58:26.678Z",
+      "finished_at": "2026-10-09T21:06:59.431Z",
+      "updated_by": "api-key:for-chatgpt-test-2",
+      "outputs": {
+        "repo_url": "https://github.com/Inkplain-Practical-Cases/practical--invoice-processing-ai-agent",
+        "steps": 6,
+        "branches": 7,
+        "final_crd": "FINAL.crd",
+        "final_components": 26,
+        "ci_status": "success",
+        "ci_run_id": 37991328466,
+        "ci_url": "https://github.com/Inkplain-Practical-Cases/practical--invoice-processing-ai-agent/actions/runs/37991328466",
+        "ci_success_jobs": 7,
+        "ci_failed_jobs": 0,
+        "stage3_started": false
+      }
+    }
+  },
+  "updated_at": "2026-10-09T21:06:59.431Z"
+}
