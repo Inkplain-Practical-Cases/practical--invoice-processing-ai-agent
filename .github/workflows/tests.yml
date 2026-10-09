@@ -23,7 +23,7 @@ jobs:
           - main
     services:
       postgres:
-        image: postgres:16-alpine
+        image: public.ecr.aws/docker/library/postgres:16-alpine
         env:
           POSTGRES_USER: invoice
           POSTGRES_PASSWORD: invoice
