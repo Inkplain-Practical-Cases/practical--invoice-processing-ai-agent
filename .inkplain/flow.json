@@ -70,7 +70,14 @@
         "commit": "573d7e48cabb38cb477a7c99e9b6927b24a33952",
         "stage4_started": false
       }
+    },
+    "content": {
+      "status": "in_progress",
+      "summary": "Gate 3 explicitly authorized. Building 8 categories and 46 content items (18 Overview incl. 16 standalone Python-coded What is topics; 25 STEP lessons with split 26-component STEP-6; 3 Conclusion). Requires MCP readback, CRD/source/4M/Simulator correctness. Earlier stages untouched.",
+      "started_at": "2026-10-09T21:14:35.658Z",
+      "finished_at": null,
+      "updated_by": "api-key:for-chatgpt-test-2"
     }
   },
-  "updated_at": "2026-10-09T21:10:08.624Z"
+  "updated_at": "2026-10-09T21:14:35.658Z"
 }
