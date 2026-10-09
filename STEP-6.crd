@@ -1,10 +1,10 @@
 {
   "crd_version": 1,
   "name": "Invoice Processing AI Agent",
-  "description": "PostgreSQL transactional persistence with safe duplicate identity and error handling.",
+  "description": "Complete offline invoice parsing with PostgreSQL, duplicates, secure logs and end-to-end tests.",
   "source": {
     "repo": "Inkplain-Practical-Cases/practical--invoice-processing-ai-agent",
-    "revision": "step-05-handle-duplicates-and-processing-errors",
+    "revision": "step-06-harden-and-verify",
     "roots": {
       "backend": "app"
     },
@@ -17,11 +17,11 @@
     ]
   },
   "step": {
-    "no": 5,
+    "no": 6,
     "of": 6,
-    "title": "Handle duplicates and processing errors",
-    "branch": "step-05-handle-duplicates-and-processing-errors",
-    "previous": "STEP-4.crd",
+    "title": "Harden and verify",
+    "branch": "step-06-harden-and-verify",
+    "previous": "STEP-5.crd",
     "removed": []
   },
   "flows": [
@@ -58,7 +58,7 @@
       "source": {
         "file": "app/features/invoice_upload/door.py",
         "symbol": "extract_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           11
@@ -101,7 +101,7 @@
       "source": {
         "file": "app/features/invoice_upload/handlers/handle_upload_invoice.py",
         "symbol": "handle_upload_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           12
@@ -155,7 +155,7 @@
       "source": {
         "file": "app/features/invoice_upload/services/service_validate_uploaded_pdf.py",
         "symbol": "service_validate_uploaded_pdf",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           14
@@ -186,7 +186,7 @@
       "source": {
         "file": "app/features/invoice_upload/services/service_extract_pdf_text.py",
         "symbol": "service_extract_pdf_text",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           14
@@ -229,7 +229,7 @@
       "source": {
         "file": "app/providers/pdf/provider_extract_pdf_text.py",
         "symbol": "provider_extract_pdf_text",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           9
@@ -260,7 +260,7 @@
       "source": {
         "file": "app/features/invoice_extraction/schemas/invoice_line_item.py",
         "symbol": "InvoiceLineItem",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           10
@@ -291,7 +291,7 @@
       "source": {
         "file": "app/features/invoice_extraction/schemas/invoice_header.py",
         "symbol": "InvoiceHeader",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           18
@@ -334,7 +334,7 @@
       "source": {
         "file": "app/features/invoice_extraction/services/service_parse_invoice_text.py",
         "symbol": "service_parse_invoice_text",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           35
@@ -377,7 +377,7 @@
       "source": {
         "file": "app/features/invoice_extraction/handlers/handle_parse_invoice.py",
         "symbol": "handle_parse_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           10
@@ -442,7 +442,7 @@
       "source": {
         "file": "app/features/invoice_extraction/door.py",
         "symbol": "parse_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           10
@@ -485,7 +485,7 @@
       "source": {
         "file": "app/features/invoice_validation/services/service_validate_invoice_amounts.py",
         "symbol": "service_validate_invoice_amounts",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           24
@@ -516,7 +516,7 @@
       "source": {
         "file": "app/features/invoice_validation/services/service_validate_invoice_dates.py",
         "symbol": "service_validate_invoice_dates",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           11
@@ -547,7 +547,7 @@
       "source": {
         "file": "app/features/invoice_validation/services/service_validate_invoice.py",
         "symbol": "service_validate_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           10
@@ -601,7 +601,7 @@
       "source": {
         "file": "app/providers/database/models.py",
         "symbol": "InvoiceORM",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           32
@@ -610,7 +610,7 @@
       "owner": "invoice_persistence",
       "component_reason": "Atomic parent/child persistence, SQLAlchemy provider and read-only endpoint.",
       "status": "observed",
-      "step_change": "changed",
+      "step_change": "unchanged",
       "inputs": [],
       "validations": [],
       "operations": [
@@ -644,7 +644,7 @@
       "source": {
         "file": "app/providers/database/models.py",
         "symbol": "InvoiceLineItemORM",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           32
@@ -675,7 +675,7 @@
       "source": {
         "file": "app/providers/database/session.py",
         "symbol": "get_db_session",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           18
@@ -706,7 +706,7 @@
       "source": {
         "file": "app/providers/database/invoice_repository.py",
         "symbol": "save_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           37
@@ -715,7 +715,7 @@
       "owner": "invoice_persistence",
       "component_reason": "Atomic parent/child persistence, SQLAlchemy provider and read-only endpoint.",
       "status": "observed",
-      "step_change": "changed",
+      "step_change": "unchanged",
       "inputs": [],
       "validations": [],
       "operations": [
@@ -760,7 +760,7 @@
       "source": {
         "file": "app/providers/database/invoice_repository.py",
         "symbol": "get_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           37
@@ -803,7 +803,7 @@
       "source": {
         "file": "app/features/invoice_persistence/services/service_save_invoice.py",
         "symbol": "service_save_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           9
@@ -837,6 +837,17 @@
             "type": "call",
             "label": "calls"
           }
+        },
+        {
+          "id": "log-store-outcome",
+          "title": "Log safe storage outcome",
+          "description": "Emits non-sensitive event metadata.",
+          "show": true,
+          "calls": {
+            "component": "be.service_log_invoice_event",
+            "type": "call",
+            "label": "logs"
+          }
         }
       ],
       "outputs": [],
@@ -857,7 +868,7 @@
       "source": {
         "file": "app/features/invoice_persistence/handlers/handle_get_invoice.py",
         "symbol": "handle_get_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           12
@@ -866,7 +877,7 @@
       "owner": "invoice_persistence",
       "component_reason": "Atomic parent/child persistence, SQLAlchemy provider and read-only endpoint.",
       "status": "observed",
-      "step_change": "unchanged",
+      "step_change": "changed",
       "inputs": [],
       "validations": [],
       "operations": [
@@ -911,7 +922,7 @@
       "source": {
         "file": "app/features/invoice_persistence/door.py",
         "symbol": "read_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           10
@@ -954,7 +965,7 @@
       "source": {
         "file": "app/features/invoice_persistence/handlers/handle_process_invoice.py",
         "symbol": "handle_process_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           12
@@ -1030,7 +1041,7 @@
       "source": {
         "file": "app/features/invoice_persistence/door_process.py",
         "symbol": "process_invoice",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           10
@@ -1073,7 +1084,7 @@
       "source": {
         "file": "app/features/invoice_persistence/services/service_normalize_vendor.py",
         "symbol": "service_normalize_vendor",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           5
@@ -1082,7 +1093,7 @@
       "owner": "invoice_persistence",
       "component_reason": "Avoiding duplicate billing and handling errors consistently.",
       "status": "observed",
-      "step_change": "added",
+      "step_change": "unchanged",
       "inputs": [],
       "validations": [],
       "operations": [],
@@ -1104,7 +1115,7 @@
       "source": {
         "file": "app/features/invoice_persistence/errors/invoice_duplicate_error.py",
         "symbol": "InvoiceDuplicateError",
-        "revision": "step-05-handle-duplicates-and-processing-errors",
+        "revision": "step-06-harden-and-verify",
         "lines": [
           1,
           4
@@ -1113,13 +1124,44 @@
       "owner": "invoice_persistence",
       "component_reason": "Avoiding duplicate billing and handling errors consistently.",
       "status": "observed",
-      "step_change": "added",
+      "step_change": "unchanged",
       "inputs": [],
       "validations": [],
       "operations": [],
       "outputs": [],
       "attributes": {
         "step_note": "added STEP-5"
+      }
+    },
+    {
+      "id": "be.service_log_invoice_event",
+      "name": "service_log_invoice_event",
+      "kind": "function",
+      "side": "backend",
+      "layer": "service",
+      "description": "Records safe structured invoice operation metadata without document contents.",
+      "flows": [
+        "process-invoice"
+      ],
+      "source": {
+        "file": "app/core/observability.py",
+        "symbol": "service_log_invoice_event",
+        "revision": "step-06-harden-and-verify",
+        "lines": [
+          1,
+          8
+        ]
+      },
+      "owner": "observability",
+      "component_reason": "Inspect events without leaking financial data.",
+      "status": "observed",
+      "step_change": "added",
+      "inputs": [],
+      "validations": [],
+      "operations": [],
+      "outputs": [],
+      "attributes": {
+        "step_note": "added STEP-6"
       }
     }
   ],
