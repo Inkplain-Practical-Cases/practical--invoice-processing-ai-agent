@@ -1,10 +1,10 @@
 {
   "crd_version": 1,
   "name": "Invoice Processing AI Agent",
-  "description": "PDF extraction and deterministic typed invoice parsing",
+  "description": "Typed invoice extraction with financial and due-date validation.",
   "source": {
     "repo": "Inkplain-Practical-Cases/practical--invoice-processing-ai-agent",
-    "revision": "step-02-extract-structured-invoice-data",
+    "revision": "step-03-validate-invoice-business-rules",
     "roots": {
       "backend": "app"
     },
@@ -15,11 +15,11 @@
     ]
   },
   "step": {
-    "no": 2,
+    "no": 3,
     "of": 6,
-    "title": "Extract structured invoice data",
-    "branch": "step-02-extract-structured-invoice-data",
-    "previous": "STEP-1.crd",
+    "title": "Validate invoice business rules",
+    "branch": "step-03-validate-invoice-business-rules",
+    "previous": "STEP-2.crd",
     "removed": []
   },
   "flows": [
@@ -50,7 +50,7 @@
       "source": {
         "file": "app/features/invoice_upload/door.py",
         "symbol": "extract_invoice",
-        "revision": "step-02-extract-structured-invoice-data",
+        "revision": "step-03-validate-invoice-business-rules",
         "lines": [
           1,
           11
@@ -93,7 +93,7 @@
       "source": {
         "file": "app/features/invoice_upload/handlers/handle_upload_invoice.py",
         "symbol": "handle_upload_invoice",
-        "revision": "step-02-extract-structured-invoice-data",
+        "revision": "step-03-validate-invoice-business-rules",
         "lines": [
           1,
           12
@@ -147,7 +147,7 @@
       "source": {
         "file": "app/features/invoice_upload/services/service_validate_uploaded_pdf.py",
         "symbol": "service_validate_uploaded_pdf",
-        "revision": "step-02-extract-structured-invoice-data",
+        "revision": "step-03-validate-invoice-business-rules",
         "lines": [
           1,
           14
@@ -178,7 +178,7 @@
       "source": {
         "file": "app/features/invoice_upload/services/service_extract_pdf_text.py",
         "symbol": "service_extract_pdf_text",
-        "revision": "step-02-extract-structured-invoice-data",
+        "revision": "step-03-validate-invoice-business-rules",
         "lines": [
           1,
           14
@@ -221,7 +221,7 @@
       "source": {
         "file": "app/providers/pdf/provider_extract_pdf_text.py",
         "symbol": "provider_extract_pdf_text",
-        "revision": "step-02-extract-structured-invoice-data",
+        "revision": "step-03-validate-invoice-business-rules",
         "lines": [
           1,
           9
@@ -252,7 +252,7 @@
       "source": {
         "file": "app/features/invoice_extraction/schemas/invoice_line_item.py",
         "symbol": "InvoiceLineItem",
-        "revision": "step-02-extract-structured-invoice-data",
+        "revision": "step-03-validate-invoice-business-rules",
         "lines": [
           1,
           10
@@ -261,7 +261,7 @@
       "owner": "invoice_extraction",
       "component_reason": "Parsing boundary separate from PDF extraction and financial validation.",
       "status": "observed",
-      "step_change": "added",
+      "step_change": "unchanged",
       "inputs": [],
       "validations": [],
       "operations": [],
@@ -283,7 +283,7 @@
       "source": {
         "file": "app/features/invoice_extraction/schemas/invoice_header.py",
         "symbol": "InvoiceHeader",
-        "revision": "step-02-extract-structured-invoice-data",
+        "revision": "step-03-validate-invoice-business-rules",
         "lines": [
           1,
           18
@@ -292,7 +292,7 @@
       "owner": "invoice_extraction",
       "component_reason": "Parsing boundary separate from PDF extraction and financial validation.",
       "status": "observed",
-      "step_change": "added",
+      "step_change": "unchanged",
       "inputs": [],
       "validations": [],
       "operations": [
@@ -326,7 +326,7 @@
       "source": {
         "file": "app/features/invoice_extraction/services/service_parse_invoice_text.py",
         "symbol": "service_parse_invoice_text",
-        "revision": "step-02-extract-structured-invoice-data",
+        "revision": "step-03-validate-invoice-business-rules",
         "lines": [
           1,
           35
@@ -335,7 +335,7 @@
       "owner": "invoice_extraction",
       "component_reason": "Parsing boundary separate from PDF extraction and financial validation.",
       "status": "observed",
-      "step_change": "added",
+      "step_change": "unchanged",
       "inputs": [],
       "validations": [],
       "operations": [
@@ -369,7 +369,7 @@
       "source": {
         "file": "app/features/invoice_extraction/handlers/handle_parse_invoice.py",
         "symbol": "handle_parse_invoice",
-        "revision": "step-02-extract-structured-invoice-data",
+        "revision": "step-03-validate-invoice-business-rules",
         "lines": [
           1,
           10
@@ -378,7 +378,7 @@
       "owner": "invoice_extraction",
       "component_reason": "Parsing boundary separate from PDF extraction and financial validation.",
       "status": "observed",
-      "step_change": "added",
+      "step_change": "changed",
       "inputs": [],
       "validations": [],
       "operations": [
@@ -403,6 +403,17 @@
             "type": "call",
             "label": "calls"
           }
+        },
+        {
+          "id": "validate-invoice",
+          "title": "Validate parsed invoice",
+          "description": "Verify financial arithmetic and dates.",
+          "show": true,
+          "calls": {
+            "component": "be.service_validate_invoice",
+            "type": "call",
+            "label": "checks"
+          }
         }
       ],
       "outputs": [],
@@ -423,7 +434,7 @@
       "source": {
         "file": "app/features/invoice_extraction/door.py",
         "symbol": "parse_invoice",
-        "revision": "step-02-extract-structured-invoice-data",
+        "revision": "step-03-validate-invoice-business-rules",
         "lines": [
           1,
           10
@@ -432,7 +443,7 @@
       "owner": "invoice_extraction",
       "component_reason": "Parsing boundary separate from PDF extraction and financial validation.",
       "status": "observed",
-      "step_change": "added",
+      "step_change": "unchanged",
       "inputs": [],
       "validations": [],
       "operations": [
@@ -451,6 +462,122 @@
       "outputs": [],
       "attributes": {
         "step_note": "added in STEP-2"
+      }
+    },
+    {
+      "id": "be.service_validate_invoice_amounts",
+      "name": "service_validate_invoice_amounts",
+      "kind": "function",
+      "side": "backend",
+      "layer": "service",
+      "description": "service_validate_invoice_amounts enforces invoice amount or date constraints before database writes.",
+      "flows": [
+        "parse-invoice"
+      ],
+      "source": {
+        "file": "app/features/invoice_validation/services/service_validate_invoice_amounts.py",
+        "symbol": "service_validate_invoice_amounts",
+        "revision": "step-03-validate-invoice-business-rules",
+        "lines": [
+          1,
+          24
+        ]
+      },
+      "owner": "invoice_validation",
+      "component_reason": "Explicit non-LLM financial verification service.",
+      "status": "observed",
+      "step_change": "added",
+      "inputs": [],
+      "validations": [],
+      "operations": [],
+      "outputs": [],
+      "attributes": {
+        "step_note": "added in STEP-3"
+      }
+    },
+    {
+      "id": "be.service_validate_invoice_dates",
+      "name": "service_validate_invoice_dates",
+      "kind": "function",
+      "side": "backend",
+      "layer": "service",
+      "description": "service_validate_invoice_dates enforces invoice amount or date constraints before database writes.",
+      "flows": [
+        "parse-invoice"
+      ],
+      "source": {
+        "file": "app/features/invoice_validation/services/service_validate_invoice_dates.py",
+        "symbol": "service_validate_invoice_dates",
+        "revision": "step-03-validate-invoice-business-rules",
+        "lines": [
+          1,
+          11
+        ]
+      },
+      "owner": "invoice_validation",
+      "component_reason": "Explicit non-LLM financial verification service.",
+      "status": "observed",
+      "step_change": "added",
+      "inputs": [],
+      "validations": [],
+      "operations": [],
+      "outputs": [],
+      "attributes": {
+        "step_note": "added in STEP-3"
+      }
+    },
+    {
+      "id": "be.service_validate_invoice",
+      "name": "service_validate_invoice",
+      "kind": "function",
+      "side": "backend",
+      "layer": "service",
+      "description": "service_validate_invoice enforces invoice amount or date constraints before database writes.",
+      "flows": [
+        "parse-invoice"
+      ],
+      "source": {
+        "file": "app/features/invoice_validation/services/service_validate_invoice.py",
+        "symbol": "service_validate_invoice",
+        "revision": "step-03-validate-invoice-business-rules",
+        "lines": [
+          1,
+          10
+        ]
+      },
+      "owner": "invoice_validation",
+      "component_reason": "Explicit non-LLM financial verification service.",
+      "status": "observed",
+      "step_change": "added",
+      "inputs": [],
+      "validations": [],
+      "operations": [
+        {
+          "id": "call-1",
+          "title": "Check service_validate_invoice_amounts",
+          "description": "Apply consistent invoice validation",
+          "show": true,
+          "calls": {
+            "component": "be.service_validate_invoice_amounts",
+            "type": "call",
+            "label": "calls"
+          }
+        },
+        {
+          "id": "call-2",
+          "title": "Check service_validate_invoice_dates",
+          "description": "Apply consistent invoice validation",
+          "show": true,
+          "calls": {
+            "component": "be.service_validate_invoice_dates",
+            "type": "call",
+            "label": "calls"
+          }
+        }
+      ],
+      "outputs": [],
+      "attributes": {
+        "step_note": "added in STEP-3"
       }
     }
   ],
