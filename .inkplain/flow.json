@@ -4,7 +4,7 @@
     "slug": "invoice-processing-ai-agent",
     "name": "Invoice Processing AI Agent"
   },
-  "current": "content",
+  "current": "done",
   "stages": {
     "intro": {
       "status": "done",
@@ -72,12 +72,41 @@
       }
     },
     "content": {
-      "status": "in_progress",
-      "summary": "Gate 3 explicitly authorized. Building 8 categories and 46 content items (18 Overview incl. 16 standalone Python-coded What is topics; 25 STEP lessons with split 26-component STEP-6; 3 Conclusion). Requires MCP readback, CRD/source/4M/Simulator correctness. Earlier stages untouched.",
+      "status": "done",
+      "summary": "Gate 3 authorized and Stage 4 completed. Created 8 ordered active categories and 46 public portal items: Overview 18 (Project overview, structure, 16 independently taught What is), STEP-1..STEP-5 four lessons each, STEP-6 five lessons (26 CRD components split as 13+13), Conclusion 3. MCP readback verified all 16 What is tutorials have actual repo Python/SQL source_code_content, 8 concept subsections and zero forbidden inkp_visualization/crd_tree; checked all 25 STEP item bodies have correct STEP-N tabs in System design, crd_tree in System design/Components/Line-by-line, genuine source walkthroughs, direct same-branch source github_file links after component paragraphs, and individual 4M for added/changed components (32 component changes overall). Conclusion 3 items checked and all six Simulator tabs validated with 108 documents / 0 missing links. Previous stages remain done.",
       "started_at": "2026-10-09T21:14:35.658Z",
-      "finished_at": null,
-      "updated_by": "api-key:for-chatgpt-test-2"
+      "finished_at": "2026-10-09T21:36:26.493Z",
+      "updated_by": "api-key:for-chatgpt-test-2",
+      "outputs": {
+        "categories": 8,
+        "items": 46,
+        "overview_items": 18,
+        "what_is_items": 16,
+        "what_is_source_code_examples": 16,
+        "what_is_forbidden_blocks": 0,
+        "step_items": 25,
+        "step6_component_splits": [
+          13,
+          13
+        ],
+        "conclusion_items": 3,
+        "github_source_links_verified": true,
+        "crd_matrix_verified": true,
+        "individual_4m_verified": true,
+        "inkp_tabs": [
+          "STEP-1",
+          "STEP-2",
+          "STEP-3",
+          "STEP-4",
+          "STEP-5",
+          "STEP-6"
+        ],
+        "inkp_documents": 108,
+        "inkp_missing_links": 0,
+        "portal_url": "/practical-case/invoice-processing-ai-agent",
+        "repo_url": "https://github.com/Inkplain-Practical-Cases/practical--invoice-processing-ai-agent"
+      }
     }
   },
-  "updated_at": "2026-10-09T21:14:35.658Z"
+  "updated_at": "2026-10-09T21:36:26.493Z"
 }
