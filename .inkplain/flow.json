@@ -45,7 +45,14 @@
         "ci_failed_jobs": 0,
         "stage3_started": false
       }
+    },
+    "inkp": {
+      "status": "in_progress",
+      "summary": "Stage 3 explicitly approved: generating six cumulative STEP-N.crd tabs with linked per-step Process Executor documents; Stage 4 excluded.",
+      "started_at": "2026-10-09T21:08:49.683Z",
+      "finished_at": null,
+      "updated_by": "api-key:for-chatgpt-test-2"
     }
   },
-  "updated_at": "2026-10-09T21:06:59.431Z"
+  "updated_at": "2026-10-09T21:08:49.683Z"
 }
