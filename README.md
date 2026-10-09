@@ -1,18 +1,13 @@
-# Invoice Processing AI Agent
+# Invoice Processing AI Agent — STEP 1
 
-Starter Forward Deployed Engineering practical case: ingest synthetic supplier invoice PDFs via FastAPI, extract text deterministically, parse typed invoice header and line items, validate decimal subtotal/tax/total math, store validated invoices transactionally in PostgreSQL, prevent vendor/invoice-number duplicates, and test malformed files and database error handling. Six cumulative teaching steps with no paid model or real accounting API required.
-
-An Inkplain practical case: a real project built step by step.
-
-## How this repository works
-
-Every step of the lesson has its own branch, and each one contains all steps up to it:
+This cumulative teaching branch exposes a real FastAPI PDF extraction endpoint.
+The thin door delegates to a handler, upload validation and a pypdf provider.
+Scanned-only PDFs do not contain embedded text and are rejected.
 
 ```bash
-git clone https://github.com/Inkplain-Practical-Cases/practical--invoice-processing-ai-agent.git
-cd practical--invoice-processing-ai-agent
-git branch -r            # list the step branches
-git checkout step-01-…   # code after step 1
+python -m pip install -r requirements.txt
+python -m pytest -q
+uvicorn app.main:app --reload
 ```
 
-`main` holds the final, complete version.
+Try POST /invoices/extract from /docs with a text-layer PDF. No external services, API keys, payments or OCR.
