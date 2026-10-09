@@ -1,11 +1,3 @@
-# Invoice Processing AI Agent — STEP 4
-All previous PDF/typed financial validation continues to work. Valid invoices are now written transactionally to real PostgreSQL via SQLAlchemy 2.
+# Invoice Processing AI Agent — STEP 5
 
-```bash
-docker compose up -d postgres
-python -m pip install -r requirements.txt
-python -m pytest -q
-uvicorn app.main:app --reload
-```
-
-POST /invoices/process with a supported synthetic text PDF → HTTP 201 plus database ID. GET /invoices/{id} retrieves it with line items. Test fixtures create tables through SQLAlchemy metadata in a clean disposable database; migration SQL shows equivalent DDL. Do not point this demo at a real finance database.
+Adds a PostgreSQL UNIQUE constraint on normalized vendor plus invoice_number, and maps duplicate insert races to safe HTTP 409 responses. SQLAlchemy storage failures return HTTP 503 without exposing SQL or PDF contents. An existing database can run migration SQL in migrations/002_invoice_unique_key.sql after duplicate cleanup. Run `docker compose up -d postgres`, install requirements and `python -m pytest -q`.
