@@ -1,0 +1,1 @@
+# Typed invoice output models.
