@@ -15239,6 +15239,851 @@
           }
         ]
       }
+    },
+    {
+      "path": "diagram_canvas/erd-invoice-processing-ai-agent-step-4",
+      "data": {
+        "name": "STEP-4-ERD",
+        "nodes": [
+          {
+            "id": "ent-invoices",
+            "type": "diagramNode",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "width": 260,
+            "height": 240,
+            "data": {
+              "label": "invoices",
+              "shape": "entity-table",
+              "color": "#52c41a",
+              "emoji": "",
+              "icon": "",
+              "body": "",
+              "fields": [
+                {
+                  "id": "invoices-id",
+                  "name": "id",
+                  "type": "SERIAL",
+                  "key": "PK"
+                },
+                {
+                  "id": "invoices-vendor",
+                  "name": "vendor",
+                  "type": "VARCHAR(240)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-invoice-number",
+                  "name": "invoice_number",
+                  "type": "VARCHAR(120)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-invoice-date",
+                  "name": "invoice_date",
+                  "type": "DATE",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-due-date",
+                  "name": "due_date",
+                  "type": "DATE",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-currency",
+                  "name": "currency",
+                  "type": "VARCHAR(3)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-subtotal",
+                  "name": "subtotal",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-tax-amount",
+                  "name": "tax_amount",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-total-amount",
+                  "name": "total_amount",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                }
+              ],
+              "nodeAttributes": [
+                {
+                  "key": "kind",
+                  "value": "table"
+                },
+                {
+                  "key": "step_change",
+                  "value": "added"
+                },
+                {
+                  "key": "description",
+                  "value": "Persisted invoice header with vendor, date, currency and totals; STEP-5 adds normalized vendor and a composite unique index on (vendor_normalized, invoice_number)."
+                },
+                {
+                  "key": "source",
+                  "value": "migrations/001_create_invoice_tables.sql"
+                },
+                {
+                  "key": "field:id",
+                  "value": "SERIAL, PK"
+                },
+                {
+                  "key": "field:vendor",
+                  "value": "VARCHAR(240), not null"
+                },
+                {
+                  "key": "field:invoice_number",
+                  "value": "VARCHAR(120), not null"
+                },
+                {
+                  "key": "field:invoice_date",
+                  "value": "DATE, not null"
+                },
+                {
+                  "key": "field:due_date",
+                  "value": "DATE, not null"
+                },
+                {
+                  "key": "field:currency",
+                  "value": "VARCHAR(3), not null"
+                },
+                {
+                  "key": "field:subtotal",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:tax_amount",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:total_amount",
+                  "value": "NUMERIC(12,2), not null"
+                }
+              ],
+              "config": {}
+            }
+          },
+          {
+            "id": "ent-invoice-line-items",
+            "type": "diagramNode",
+            "position": {
+              "x": 340,
+              "y": 0
+            },
+            "width": 260,
+            "height": 180,
+            "data": {
+              "label": "invoice_line_items",
+              "shape": "entity-table",
+              "color": "#52c41a",
+              "emoji": "",
+              "icon": "",
+              "body": "",
+              "fields": [
+                {
+                  "id": "invoice-line-items-id",
+                  "name": "id",
+                  "type": "SERIAL",
+                  "key": "PK"
+                },
+                {
+                  "id": "invoice-line-items-invoice-id",
+                  "name": "invoice_id",
+                  "type": "INTEGER",
+                  "key": "FK"
+                },
+                {
+                  "id": "invoice-line-items-description",
+                  "name": "description",
+                  "type": "VARCHAR(240)",
+                  "key": ""
+                },
+                {
+                  "id": "invoice-line-items-quantity",
+                  "name": "quantity",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoice-line-items-unit-price",
+                  "name": "unit_price",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoice-line-items-line-total",
+                  "name": "line_total",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                }
+              ],
+              "nodeAttributes": [
+                {
+                  "key": "kind",
+                  "value": "table"
+                },
+                {
+                  "key": "step_change",
+                  "value": "added"
+                },
+                {
+                  "key": "description",
+                  "value": "Line items belonging to an invoice; invoice_id references invoices.id with ON DELETE CASCADE."
+                },
+                {
+                  "key": "source",
+                  "value": "migrations/001_create_invoice_tables.sql"
+                },
+                {
+                  "key": "field:id",
+                  "value": "SERIAL, PK"
+                },
+                {
+                  "key": "field:invoice_id",
+                  "value": "INTEGER, FK, not null, → invoices.id, References invoices.id; PostgreSQL foreign key uses ON DELETE CASCADE."
+                },
+                {
+                  "key": "field:description",
+                  "value": "VARCHAR(240), not null"
+                },
+                {
+                  "key": "field:quantity",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:unit_price",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:line_total",
+                  "value": "NUMERIC(12,2), not null"
+                }
+              ],
+              "config": {}
+            }
+          },
+          {
+            "id": "ent-legend",
+            "type": "diagramNode",
+            "position": {
+              "x": 0,
+              "y": 300
+            },
+            "width": 260,
+            "height": 120,
+            "data": {
+              "label": "This step's database:\ngreen = added\nPK = primary key · FK = foreign key",
+              "shape": "note",
+              "color": "#d4b106",
+              "emoji": "",
+              "icon": "",
+              "body": "",
+              "config": {}
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "rel-invoice-line-items-invoice-id-invoices-id",
+            "source": "ent-invoice-line-items",
+            "target": "ent-invoices",
+            "sourceHandle": "l",
+            "targetHandle": "r",
+            "type": "smoothstep",
+            "label": "n .. 1",
+            "data": {
+              "color": "#595959",
+              "lineStyle": "solid",
+              "markerStartShape": "none",
+              "markerEndShape": "arrowclosed",
+              "pathType": "orthogonal",
+              "strokeWidth": 1
+            }
+          }
+        ],
+        "order": 9
+      }
+    },
+    {
+      "path": "diagram_canvas/erd-invoice-processing-ai-agent-step-5",
+      "data": {
+        "name": "STEP-5-ERD",
+        "nodes": [
+          {
+            "id": "ent-invoices",
+            "type": "diagramNode",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "width": 260,
+            "height": 260,
+            "data": {
+              "label": "invoices",
+              "shape": "entity-table",
+              "color": "#fa8c16",
+              "emoji": "",
+              "icon": "",
+              "body": "",
+              "fields": [
+                {
+                  "id": "invoices-id",
+                  "name": "id",
+                  "type": "SERIAL",
+                  "key": "PK"
+                },
+                {
+                  "id": "invoices-vendor",
+                  "name": "vendor",
+                  "type": "VARCHAR(240)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-invoice-number",
+                  "name": "invoice_number",
+                  "type": "VARCHAR(120)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-invoice-date",
+                  "name": "invoice_date",
+                  "type": "DATE",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-due-date",
+                  "name": "due_date",
+                  "type": "DATE",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-currency",
+                  "name": "currency",
+                  "type": "VARCHAR(3)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-subtotal",
+                  "name": "subtotal",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-tax-amount",
+                  "name": "tax_amount",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-total-amount",
+                  "name": "total_amount",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-vendor-normalized",
+                  "name": "vendor_normalized",
+                  "type": "VARCHAR(240)",
+                  "key": ""
+                }
+              ],
+              "nodeAttributes": [
+                {
+                  "key": "kind",
+                  "value": "table"
+                },
+                {
+                  "key": "step_change",
+                  "value": "changed"
+                },
+                {
+                  "key": "description",
+                  "value": "Persisted invoice header with vendor, date, currency and totals; STEP-5 adds normalized vendor and a composite unique index on (vendor_normalized, invoice_number)."
+                },
+                {
+                  "key": "source",
+                  "value": "migrations/001_create_invoice_tables.sql; migrations/002_invoice_unique_key.sql"
+                },
+                {
+                  "key": "field:id",
+                  "value": "SERIAL, PK"
+                },
+                {
+                  "key": "field:vendor",
+                  "value": "VARCHAR(240), not null"
+                },
+                {
+                  "key": "field:invoice_number",
+                  "value": "VARCHAR(120), not null"
+                },
+                {
+                  "key": "field:invoice_date",
+                  "value": "DATE, not null"
+                },
+                {
+                  "key": "field:due_date",
+                  "value": "DATE, not null"
+                },
+                {
+                  "key": "field:currency",
+                  "value": "VARCHAR(3), not null"
+                },
+                {
+                  "key": "field:subtotal",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:tax_amount",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:total_amount",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:vendor_normalized",
+                  "value": "VARCHAR(240), not null, Lowercased normalized vendor name; together with invoice_number unique indexed."
+                }
+              ],
+              "config": {}
+            }
+          },
+          {
+            "id": "ent-invoice-line-items",
+            "type": "diagramNode",
+            "position": {
+              "x": 340,
+              "y": 0
+            },
+            "width": 260,
+            "height": 180,
+            "data": {
+              "label": "invoice_line_items",
+              "shape": "entity-table",
+              "color": "#8c8c8c",
+              "emoji": "",
+              "icon": "",
+              "body": "",
+              "fields": [
+                {
+                  "id": "invoice-line-items-id",
+                  "name": "id",
+                  "type": "SERIAL",
+                  "key": "PK"
+                },
+                {
+                  "id": "invoice-line-items-invoice-id",
+                  "name": "invoice_id",
+                  "type": "INTEGER",
+                  "key": "FK"
+                },
+                {
+                  "id": "invoice-line-items-description",
+                  "name": "description",
+                  "type": "VARCHAR(240)",
+                  "key": ""
+                },
+                {
+                  "id": "invoice-line-items-quantity",
+                  "name": "quantity",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoice-line-items-unit-price",
+                  "name": "unit_price",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoice-line-items-line-total",
+                  "name": "line_total",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                }
+              ],
+              "nodeAttributes": [
+                {
+                  "key": "kind",
+                  "value": "table"
+                },
+                {
+                  "key": "step_change",
+                  "value": "unchanged"
+                },
+                {
+                  "key": "description",
+                  "value": "Line items belonging to an invoice; invoice_id references invoices.id with ON DELETE CASCADE."
+                },
+                {
+                  "key": "source",
+                  "value": "migrations/001_create_invoice_tables.sql"
+                },
+                {
+                  "key": "field:id",
+                  "value": "SERIAL, PK"
+                },
+                {
+                  "key": "field:invoice_id",
+                  "value": "INTEGER, FK, not null, → invoices.id, References invoices.id; PostgreSQL foreign key uses ON DELETE CASCADE."
+                },
+                {
+                  "key": "field:description",
+                  "value": "VARCHAR(240), not null"
+                },
+                {
+                  "key": "field:quantity",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:unit_price",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:line_total",
+                  "value": "NUMERIC(12,2), not null"
+                }
+              ],
+              "config": {}
+            }
+          },
+          {
+            "id": "ent-legend",
+            "type": "diagramNode",
+            "position": {
+              "x": 0,
+              "y": 320
+            },
+            "width": 260,
+            "height": 120,
+            "data": {
+              "label": "This step's database:\norange = changed\ngrey = unchanged\nPK = primary key · FK = foreign key",
+              "shape": "note",
+              "color": "#d4b106",
+              "emoji": "",
+              "icon": "",
+              "body": "",
+              "config": {}
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "rel-invoice-line-items-invoice-id-invoices-id",
+            "source": "ent-invoice-line-items",
+            "target": "ent-invoices",
+            "sourceHandle": "l",
+            "targetHandle": "r",
+            "type": "smoothstep",
+            "label": "n .. 1",
+            "data": {
+              "color": "#8c8c8c",
+              "lineStyle": "solid",
+              "markerStartShape": "none",
+              "markerEndShape": "arrowclosed",
+              "pathType": "orthogonal",
+              "strokeWidth": 1
+            }
+          }
+        ],
+        "order": 10
+      }
+    },
+    {
+      "path": "diagram_canvas/erd-invoice-processing-ai-agent-step-6",
+      "data": {
+        "name": "STEP-6-ERD",
+        "nodes": [
+          {
+            "id": "ent-invoices",
+            "type": "diagramNode",
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "width": 260,
+            "height": 260,
+            "data": {
+              "label": "invoices",
+              "shape": "entity-table",
+              "color": "#8c8c8c",
+              "emoji": "",
+              "icon": "",
+              "body": "",
+              "fields": [
+                {
+                  "id": "invoices-id",
+                  "name": "id",
+                  "type": "SERIAL",
+                  "key": "PK"
+                },
+                {
+                  "id": "invoices-vendor",
+                  "name": "vendor",
+                  "type": "VARCHAR(240)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-invoice-number",
+                  "name": "invoice_number",
+                  "type": "VARCHAR(120)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-invoice-date",
+                  "name": "invoice_date",
+                  "type": "DATE",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-due-date",
+                  "name": "due_date",
+                  "type": "DATE",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-currency",
+                  "name": "currency",
+                  "type": "VARCHAR(3)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-subtotal",
+                  "name": "subtotal",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-tax-amount",
+                  "name": "tax_amount",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-total-amount",
+                  "name": "total_amount",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoices-vendor-normalized",
+                  "name": "vendor_normalized",
+                  "type": "VARCHAR(240)",
+                  "key": ""
+                }
+              ],
+              "nodeAttributes": [
+                {
+                  "key": "kind",
+                  "value": "table"
+                },
+                {
+                  "key": "step_change",
+                  "value": "unchanged"
+                },
+                {
+                  "key": "description",
+                  "value": "Persisted invoice header with vendor, date, currency and totals; STEP-5 adds normalized vendor and a composite unique index on (vendor_normalized, invoice_number)."
+                },
+                {
+                  "key": "source",
+                  "value": "migrations/001_create_invoice_tables.sql; migrations/002_invoice_unique_key.sql"
+                },
+                {
+                  "key": "field:id",
+                  "value": "SERIAL, PK"
+                },
+                {
+                  "key": "field:vendor",
+                  "value": "VARCHAR(240), not null"
+                },
+                {
+                  "key": "field:invoice_number",
+                  "value": "VARCHAR(120), not null"
+                },
+                {
+                  "key": "field:invoice_date",
+                  "value": "DATE, not null"
+                },
+                {
+                  "key": "field:due_date",
+                  "value": "DATE, not null"
+                },
+                {
+                  "key": "field:currency",
+                  "value": "VARCHAR(3), not null"
+                },
+                {
+                  "key": "field:subtotal",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:tax_amount",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:total_amount",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:vendor_normalized",
+                  "value": "VARCHAR(240), not null, Lowercased normalized vendor name; together with invoice_number unique indexed."
+                }
+              ],
+              "config": {}
+            }
+          },
+          {
+            "id": "ent-invoice-line-items",
+            "type": "diagramNode",
+            "position": {
+              "x": 340,
+              "y": 0
+            },
+            "width": 260,
+            "height": 180,
+            "data": {
+              "label": "invoice_line_items",
+              "shape": "entity-table",
+              "color": "#8c8c8c",
+              "emoji": "",
+              "icon": "",
+              "body": "",
+              "fields": [
+                {
+                  "id": "invoice-line-items-id",
+                  "name": "id",
+                  "type": "SERIAL",
+                  "key": "PK"
+                },
+                {
+                  "id": "invoice-line-items-invoice-id",
+                  "name": "invoice_id",
+                  "type": "INTEGER",
+                  "key": "FK"
+                },
+                {
+                  "id": "invoice-line-items-description",
+                  "name": "description",
+                  "type": "VARCHAR(240)",
+                  "key": ""
+                },
+                {
+                  "id": "invoice-line-items-quantity",
+                  "name": "quantity",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoice-line-items-unit-price",
+                  "name": "unit_price",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                },
+                {
+                  "id": "invoice-line-items-line-total",
+                  "name": "line_total",
+                  "type": "NUMERIC(12,2)",
+                  "key": ""
+                }
+              ],
+              "nodeAttributes": [
+                {
+                  "key": "kind",
+                  "value": "table"
+                },
+                {
+                  "key": "step_change",
+                  "value": "unchanged"
+                },
+                {
+                  "key": "description",
+                  "value": "Line items belonging to an invoice; invoice_id references invoices.id with ON DELETE CASCADE."
+                },
+                {
+                  "key": "source",
+                  "value": "migrations/001_create_invoice_tables.sql"
+                },
+                {
+                  "key": "field:id",
+                  "value": "SERIAL, PK"
+                },
+                {
+                  "key": "field:invoice_id",
+                  "value": "INTEGER, FK, not null, → invoices.id, References invoices.id; PostgreSQL foreign key uses ON DELETE CASCADE."
+                },
+                {
+                  "key": "field:description",
+                  "value": "VARCHAR(240), not null"
+                },
+                {
+                  "key": "field:quantity",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:unit_price",
+                  "value": "NUMERIC(12,2), not null"
+                },
+                {
+                  "key": "field:line_total",
+                  "value": "NUMERIC(12,2), not null"
+                }
+              ],
+              "config": {}
+            }
+          },
+          {
+            "id": "ent-legend",
+            "type": "diagramNode",
+            "position": {
+              "x": 0,
+              "y": 320
+            },
+            "width": 260,
+            "height": 120,
+            "data": {
+              "label": "This step's database:\ngrey = unchanged\nPK = primary key · FK = foreign key",
+              "shape": "note",
+              "color": "#d4b106",
+              "emoji": "",
+              "icon": "",
+              "body": "",
+              "config": {}
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "rel-invoice-line-items-invoice-id-invoices-id",
+            "source": "ent-invoice-line-items",
+            "target": "ent-invoices",
+            "sourceHandle": "l",
+            "targetHandle": "r",
+            "type": "smoothstep",
+            "label": "n .. 1",
+            "data": {
+              "color": "#8c8c8c",
+              "lineStyle": "solid",
+              "markerStartShape": "none",
+              "markerEndShape": "arrowclosed",
+              "pathType": "orthogonal",
+              "strokeWidth": 1
+            }
+          }
+        ],
+        "order": 11
+      }
     }
   ]
 }

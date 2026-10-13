@@ -1,0 +1,115 @@
+{
+  "erd_version": 1,
+  "name": "invoice-processing-ai-agent",
+  "step": "final",
+  "engine": "postgresql",
+  "generated_from": [
+    "migrations/001_create_invoice_tables.sql",
+    "migrations/002_invoice_unique_key.sql",
+    "app/providers/database/models.py"
+  ],
+  "entities": [
+    {
+      "name": "invoices",
+      "kind": "table",
+      "step_change": "unchanged",
+      "source": "migrations/001_create_invoice_tables.sql; migrations/002_invoice_unique_key.sql",
+      "description": "Invoice headers with composite normalized vendor/invoice number uniqueness.",
+      "fields": [
+        {
+          "name": "id",
+          "type": "SERIAL",
+          "key": "PK"
+        },
+        {
+          "name": "vendor",
+          "type": "VARCHAR(240)",
+          "nullable": false
+        },
+        {
+          "name": "invoice_number",
+          "type": "VARCHAR(120)",
+          "nullable": false
+        },
+        {
+          "name": "invoice_date",
+          "type": "DATE",
+          "nullable": false
+        },
+        {
+          "name": "due_date",
+          "type": "DATE",
+          "nullable": false
+        },
+        {
+          "name": "currency",
+          "type": "VARCHAR(3)",
+          "nullable": false
+        },
+        {
+          "name": "subtotal",
+          "type": "NUMERIC(12,2)",
+          "nullable": false
+        },
+        {
+          "name": "tax_amount",
+          "type": "NUMERIC(12,2)",
+          "nullable": false
+        },
+        {
+          "name": "total_amount",
+          "type": "NUMERIC(12,2)",
+          "nullable": false
+        },
+        {
+          "name": "vendor_normalized",
+          "type": "VARCHAR(240)",
+          "nullable": false,
+          "description": "Normalized vendor name used with invoice_number in a composite unique index."
+        }
+      ]
+    },
+    {
+      "name": "invoice_line_items",
+      "kind": "table",
+      "step_change": "unchanged",
+      "source": "migrations/001_create_invoice_tables.sql",
+      "description": "Invoice item records referencing invoices.id ON DELETE CASCADE.",
+      "fields": [
+        {
+          "name": "id",
+          "type": "SERIAL",
+          "key": "PK"
+        },
+        {
+          "name": "invoice_id",
+          "type": "INTEGER",
+          "references": "invoices.id",
+          "nullable": false,
+          "description": "References invoices.id; PostgreSQL foreign key uses ON DELETE CASCADE."
+        },
+        {
+          "name": "description",
+          "type": "VARCHAR(240)",
+          "nullable": false
+        },
+        {
+          "name": "quantity",
+          "type": "NUMERIC(12,2)",
+          "nullable": false
+        },
+        {
+          "name": "unit_price",
+          "type": "NUMERIC(12,2)",
+          "nullable": false
+        },
+        {
+          "name": "line_total",
+          "type": "NUMERIC(12,2)",
+          "nullable": false
+        }
+      ]
+    }
+  ],
+  "relations": []
+}
