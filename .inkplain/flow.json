@@ -48,27 +48,28 @@
     },
     "inkp": {
       "status": "done",
-      "summary": "Stage 3 explicitly approved and completed. Created invoice-processing-ai-agent.inkp from six cumulative STEP-N.crd snapshots, with exactly six STEP-1..STEP-6 diagram tabs and 102 unique, step-scoped linked Process Executor contracts, committed to main at 573d7e48cabb38cb477a7c99e9b6927b24a33952. MCP get_inkp_summary verified 108 docs (6 diagram_canvas, 102 process_executor_canvas), correct ordered tabs, zero missing linked documents. Stage 4 was not started.",
+      "summary": "Built migration-backed PostgreSQL invoices and invoice_line_items ERDs on STEP-4/5/6 and embedded in .inkp.",
       "started_at": "2026-10-09T21:08:49.683Z",
       "finished_at": "2026-10-09T21:10:08.624Z",
       "updated_by": "api-key:for-chatgpt-test-2",
       "outputs": {
         "inkp_path": "invoice-processing-ai-agent.inkp",
         "inkp_url": "https://github.com/Inkplain-Practical-Cases/practical--invoice-processing-ai-agent/blob/main/invoice-processing-ai-agent.inkp",
-        "tabs": [
-          "STEP-1",
-          "STEP-2",
-          "STEP-3",
-          "STEP-4",
-          "STEP-5",
-          "STEP-6"
-        ],
+        "tabs": 9,
         "diagrams": 6,
         "process_executors": 102,
         "documents": 108,
         "missing_linked_documents": 0,
         "commit": "573d7e48cabb38cb477a7c99e9b6927b24a33952",
-        "stage4_started": false
+        "stage4_started": false,
+        "erd_tabs": [
+          "STEP-4-ERD",
+          "STEP-5-ERD",
+          "STEP-6-ERD"
+        ],
+        "erd_entities": 2,
+        "erd_relations": 1,
+        "missing_links": 0
       }
     },
     "content": {
@@ -108,5 +109,5 @@
       }
     }
   },
-  "updated_at": "2026-10-09T21:36:26.493Z"
+  "updated_at": "2026-10-13T11:54:09.083Z"
 }
